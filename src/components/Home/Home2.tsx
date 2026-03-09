@@ -1,60 +1,60 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import myImg from "../../Assets/avatar.svg";
 import Tilt from "react-parallax-tilt";
 
 const Home2: React.FC = () => {
   return (
-    <Container fluid className="home-about-section" id="about">
-      <Container>
-        <Row>
-          <Col md={8} className="home-about-description">
+    <div className="relative w-full pb-[70px] pt-[70px]" id="about">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex flex-wrap">
+          <div className="w-full md:w-8/12 text-center text-white pt-[100px] pb-5">
             <h1 className="text-[2.6em]">
-              LET ME <span className="purple"> INTRODUCE </span> MYSELF
+              DEIXE-ME <span className="text-accent"> ME APRESENTAR </span>
             </h1>
-            <p className="home-about-body">
-              I’m a Software Engineer who loves transforming ideas into
-              reliable, scalable products. Over time, I’ve explored several
-              technologies and found my passion in building high-performance
-              systems and intuitive user experiences.
+            <p className="pt-[50px] text-[1.2em] text-left">
+              Sou um Desenvolvedor Web apaixonado por criar sistemas práticos e funcionais.
+              Gosto de resolver problemas reais através do código, focando na construção de 
+              <b className="text-accent"> APIs </b> e 
+              <b className="text-accent"> automação de comunicações</b>, sempre buscando 
+              otimizar a experiência do usuário e a gestão de dados.
               <br />
               <br />
-              I’m proficient in
+              Tenho experiência com
               <i>
-                <b className="purple">
+                <b className="text-accent">
                   {" "}
-                  JavaScript, C++, Rust, Node.js, and Java{" "}
+                  Node.js, NestJS, React, Next.js, Python e C/C++{" "}
                 </b>
               </i>
-              — and I enjoy working across both backend and frontend stacks.
+              — e gosto de trabalhar tanto no backend quanto no frontend.
               <br />
               <br />
-              My key areas of interest include developing
+              Minhas áreas de interesse incluem o desenvolvimento de
               <i>
-                <b className="purple">
+                <b className="text-accent">
                   {" "}
-                  Web Applications, Blockchain Solutions,{" "}
+                  Aplicações Web, Automação de Sistemas{" "}
                 </b>
               </i>
-              and exploring new ways to bridge on-chain and off-chain systems.
+              e integração de plataformas de comunicação como o WhatsApp.
               <br />
               <br />
-              Whenever possible, I love building projects with
-              <b className="purple"> Node.js </b> and modern frameworks like{" "}
+              Sempre que possível, gosto de construir projetos com
+              <b className="text-accent"> Node.js </b> e frameworks modernos como{" "}
               <i>
-                <b className="purple">React.js</b> and{" "}
-                <b className="purple">Next.js</b>.
+                <b className="text-accent">React.js</b> e{" "}
+                <b className="text-accent">Next.js</b>.
               </i>
             </p>
-          </Col>
-          <Col md={4} className="myAvtar flex justify-center">
+          </div>
+          <div className="w-full md:w-4/12 flex justify-center items-center">
             <Tilt>
-              <img src={myImg} className="img-fluid mx-auto block" alt="avatar" />
+              <img src={myImg} className="w-64 md:w-80 h-auto mx-auto block" alt="avatar" />
             </Tilt>
-          </Col>
-        </Row>
-      </Container>
-    </Container>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

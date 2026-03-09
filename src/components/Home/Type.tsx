@@ -6,10 +6,10 @@ const Type: React.FC = () => {
     <Typewriter
       options={{
         strings: [
-          "Software Developer",
-          "Freelancer",
-          "MERN Stack Developer",
-          "Open Source Contributor",
+          "Desenvolvedor Web",
+          "Desenvolvedor Full Stack",
+          "Especialista em Node.js",
+          "Integrador de Sistemas",
         ],
         autoStart: true,
         loop: true,

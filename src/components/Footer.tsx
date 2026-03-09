@@ -1,8 +1,6 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import {
   AiFillGithub,
-  AiOutlineTwitter,
   AiFillInstagram,
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -11,19 +9,19 @@ const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
-    <Container fluid className="footer">
-      <Row>
-        <Col md="4" className="footer-copywright">
-          <h3>Designed and Developed by Soumyajit Behera</h3>
-        </Col>
-        <Col md="4" className="footer-copywright">
-          <h3>Copyright © {year} SB</h3>
-        </Col>
-        <Col md="4" className="footer-body">
-          <ul className="footer-icons">
-            <li className="social-icons">
+    <footer className="w-full bg-surface-footer pt-2.5 pb-2 z-10">
+      <div className="flex flex-wrap">
+        <div className="w-full md:w-4/12 text-center">
+          <h3 className="text-white text-base mt-2 mb-2">Desenvolvido por Alessandro Cardoso</h3>
+        </div>
+        <div className="w-full md:w-4/12 text-center">
+          <h3 className="text-white text-base mt-2 mb-2">Copyright © {year} AC</h3>
+        </div>
+        <div className="w-full md:w-4/12 text-center">
+          <ul className="list-none mt-2 mb-2 p-0 flex justify-center">
+            <li className="inline-block px-4">
               <a
-                href="https://github.com/soumyajit4419"
+                href="https://github.com/Pelezi"
                 className="text-white"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -31,19 +29,9 @@ const Footer: React.FC = () => {
                 <AiFillGithub />
               </a>
             </li>
-            <li className="social-icons">
+            <li className="inline-block px-4">
               <a
-                href="https://twitter.com/Soumyajit4419"
-                className="text-white"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiOutlineTwitter />
-              </a>
-            </li>
-            <li className="social-icons">
-              <a
-                href="https://www.linkedin.com/in/soumyajit4419/"
+                href="https://www.linkedin.com/in/alessandro-cardoso-500418163/"
                 className="text-white"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -51,9 +39,9 @@ const Footer: React.FC = () => {
                 <FaLinkedinIn />
               </a>
             </li>
-            <li className="social-icons">
+            <li className="inline-block px-4">
               <a
-                href="https://www.instagram.com/soumyajit4419"
+                href="https://www.instagram.com/opelezi"
                 className="text-white"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -62,9 +50,9 @@ const Footer: React.FC = () => {
               </a>
             </li>
           </ul>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </footer>
   );
 };
 

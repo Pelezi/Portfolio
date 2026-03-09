@@ -7,13 +7,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        purple: {
-          imp: "#c770f0",
-          main: "#cd5ff8",
-          hover: "#6d20c5",
-          btn: "#623686",
-          dark: "#1b1a2e",
-          border: "#8a49a8",
+        accent: {
+          DEFAULT: "#3B82F6",
+          light: "#60A5FA",
+          dark: "#1e40af",
+          muted: "rgba(59,130,246,0.37)",
+          hover: "rgba(59,130,246,0.53)",
+        },
+        surface: {
+          dark: "#0c0513",
+          navbar: "#1b1a2ea9",
+          navbarSolid: "#181a27",
+          footer: "rgb(10,4,22)",
         },
       },
       fontFamily: {

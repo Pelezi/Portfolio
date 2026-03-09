@@ -1,5 +1,4 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import Particle from "../Particle";
 import Github from "./Github";
 import Techstack from "./Techstack";
@@ -10,41 +9,34 @@ import Toolstack from "./Toolstack";
 const About: React.FC = () => {
   return (
     <>
-      {" "}
       <Particle />
-      <Container fluid className="about-section">
-        <Container>
-          <Row className="justify-center p-2.5">
-            <Col
-              md={7}
-              className="justify-center pt-[30px] pb-[50px]"
-            >
+      <div className="relative pt-[150px] pb-8 text-white w-full">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-wrap justify-center p-2.5">
+            <div className="w-full md:w-7/12 flex flex-col justify-center pt-[30px] pb-[50px]">
               <h1 className="text-[2.1em] pb-5">
-                Know Who <strong className="purple">I'M</strong>
+                Saiba Quem <strong className="text-accent">EU SOU</strong>
               </h1>
               <Aboutcard />
-            </Col>
-            <Col
-              md={5}
-              className="about-img pt-[120px] pb-[50px]"
-            >
-              <img src={laptopImg} alt="about" className="img-fluid" />
-            </Col>
-          </Row>
-          <h1 className="project-heading">
-            Professional <strong className="purple">Skillset </strong>
+            </div>
+            <div className="w-full md:w-5/12 pt-0 md:pt-[120px] pb-[50px]">
+              <img src={laptopImg} alt="about" className="max-w-full h-auto" />
+            </div>
+          </div>
+          <h1 className="text-white text-[2.3em] font-medium pt-2.5 text-center">
+            Minhas <strong className="text-accent">Habilidades</strong>
           </h1>
 
           <Techstack />
 
-          <h1 className="project-heading">
-            <strong className="purple">Tools</strong> I use
+          <h1 className="text-white text-[2.3em] font-medium pt-2.5 text-center">
+            <strong className="text-accent">Ferramentas</strong> que uso
           </h1>
           <Toolstack />
 
           <Github />
-        </Container>
-      </Container>
+        </div>
+      </div>
     </>
   );
 };

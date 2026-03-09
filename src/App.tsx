@@ -14,7 +14,6 @@ import {
 } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const App: React.FC = () => {
   const [load, setLoad] = useState<boolean>(true);
@@ -30,7 +29,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Preloader load={load} />
-      <div className="text-center" id={load ? "no-scroll" : "scroll"}>
+      <div className={`text-center ${load ? "overflow-hidden h-screen" : ""}`}>
         <Navbar />
         <ScrollToTop />
         <Routes>
