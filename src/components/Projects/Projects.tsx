@@ -9,7 +9,7 @@ import chatify from "../../Assets/Projects/chatify.png";
 import suicide from "../../Assets/Projects/suicide.png";
 import bitsOfCode from "../../Assets/Projects/blog.png";
 
-function Projects() {
+const Projects: React.FC = () => {
   return (
     <Container fluid className="project-section">
       <Particle />
@@ -17,10 +17,10 @@ function Projects() {
         <h1 className="project-heading">
           My Recent <strong className="purple">Works </strong>
         </h1>
-        <p style={{ color: "white" }}>
+        <p className="text-white">
           Here are a few projects I've worked on recently.
         </p>
-        <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+        <Row className="justify-center pb-2.5">
           <Col md={4} className="project-card">
             <ProjectCard
               imgPath={chatify}
@@ -91,6 +91,6 @@ function Projects() {
       </Container>
     </Container>
   );
-}
+};
 
 export default Projects;

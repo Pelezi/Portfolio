@@ -5,9 +5,9 @@ import chrome from "../../Assets/TechIcons/Google Chrome.svg";
 import vsCode from "../../Assets/TechIcons/vscode.svg";
 import intelliJ from "../../Assets/TechIcons/intellij-idea.svg";
 
-function Toolstack() {
+const Toolstack: React.FC = () => {
   return (
-    <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
+    <Row className="justify-center pb-[50px]">
       <Col xs={4} md={2} className="tech-icons">
         <img src={macOs} alt="macOs" className="tech-icon-images" />
         <div className="tech-icons-text">Mac Os</div>
@@ -27,6 +27,6 @@ function Toolstack() {
       </Col>
     </Row>
   );
-}
+};
 
 export default Toolstack;

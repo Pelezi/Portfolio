@@ -25,9 +25,9 @@ import Postman from "../../Assets/TechIcons/Postman.svg";
 import AWS from "../../Assets/TechIcons/AWS.svg";
 import Kafka from "../../Assets/TechIcons/Kafka.svg";
 
-function Techstack() {
+const Techstack: React.FC = () => {
   return (
-    <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
+    <Row className="justify-center pb-[50px]">
       <Col xs={4} md={2} className="tech-icons">
         <img src={C} alt="C++" />
         <div className="tech-icons-text">C++</div>
@@ -139,6 +139,6 @@ function Techstack() {
       </Col>
     </Row>
   );
-}
+};
 
 export default Techstack;

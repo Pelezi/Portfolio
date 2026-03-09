@@ -8,8 +8,8 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-function ResumeNew() {
-  const [width, setWidth] = useState(1200);
+const ResumeNew: React.FC = () => {
+  const [width, setWidth] = useState<number>(1200);
 
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -19,14 +19,14 @@ function ResumeNew() {
     <div>
       <Container fluid className="resume-section">
         <Particle />
-        <Row style={{ justifyContent: "center", position: "relative" }}>
+        <Row className="justify-content-center position-relative">
           <Button
             variant="primary"
             href={pdf}
             target="_blank"
-            style={{ maxWidth: "250px" }}
+            style={{ maxWidth: "250px", width: "auto" }}
           >
-            <AiOutlineDownload />
+            <AiOutlineDownload className="inline-block" />
             &nbsp;Download CV
           </Button>
         </Row>
@@ -37,20 +37,20 @@ function ResumeNew() {
           </Document>
         </Row>
 
-        <Row style={{ justifyContent: "center", position: "relative" }}>
+        <Row className="justify-content-center position-relative">
           <Button
             variant="primary"
             href={pdf}
             target="_blank"
-            style={{ maxWidth: "250px" }}
+            style={{ maxWidth: "250px", width: "auto" }}
           >
-            <AiOutlineDownload />
+            <AiOutlineDownload className="inline-block" />
             &nbsp;Download CV
           </Button>
         </Row>
       </Container>
     </div>
   );
-}
+};
 
 export default ResumeNew;

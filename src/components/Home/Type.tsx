@@ -1,7 +1,7 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
 
-function Type() {
+const Type: React.FC = () => {
   return (
     <Typewriter
       options={{
@@ -17,6 +17,6 @@ function Type() {
       }}
     />
   );
-}
+};
 
 export default Type;
