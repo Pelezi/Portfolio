@@ -11,23 +11,38 @@ import {
   Route,
   Routes,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
 
-const App: React.FC = () => {
+const MIN_PRELOADER_MS = 5000;
+
+const AppContent: React.FC = () => {
+  const location = useLocation();
+  const isLoadingRoute = location.pathname === "/loading";
   const [load, setLoad] = useState<boolean>(true);
 
   useEffect(() => {
+    if (isLoadingRoute) {
+      setLoad(true);
+      return;
+    }
+
+    setLoad(true);
     const timer = setTimeout(() => {
       setLoad(false);
-    }, 1200);
+    }, MIN_PRELOADER_MS);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [isLoadingRoute]);
+
+  if (isLoadingRoute) {
+    return <Preloader load={true} alwaysVisible />;
+  }
 
   return (
-    <Router>
+    <>
       <Preloader load={load} />
       <div className={`text-center ${load ? "overflow-hidden h-screen" : ""}`}>
         <Navbar />
@@ -41,6 +56,14 @@ const App: React.FC = () => {
         </Routes>
         <Footer />
       </div>
+    </>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 };

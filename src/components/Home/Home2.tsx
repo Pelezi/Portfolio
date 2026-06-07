@@ -9,7 +9,7 @@ const Home2: React.FC = () => {
         <div className="flex flex-wrap">
           <div className="w-full md:w-8/12 text-center text-white pt-[100px] pb-5">
             <h1 className="text-[2.6em]">
-              DEIXE-ME <span className="text-accent"> ME APRESENTAR </span>
+              DEIXA EU <span className="text-accent">ME APRESENTAR </span>
             </h1>
             <p className="pt-[50px] text-[1.2em] text-left">
               Sou um Desenvolvedor Web apaixonado por criar sistemas práticos e funcionais.

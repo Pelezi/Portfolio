@@ -9,5 +9,8 @@ body {
   font-family: "PT Mono", monospace !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: linear-gradient(to left, rgb(27 20 41), rgb(20 15 35));
+  background-color: #0b132b;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 50% 20%, rgba(244, 208, 111, 0.06) 0%, transparent 70%),
+    linear-gradient(160deg, #0b132b 0%, #121b3c 100%);
 }

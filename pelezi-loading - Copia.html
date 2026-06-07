@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pelezi — Loading</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --bg: #0b132b; --gold: #f4d06f; }
+
+  body {
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(244,208,111,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    animation: glowPulse 3.5s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.5; }
+    50%       { opacity: 1;   }
+  }
+
+  .stage { width: min(72vw, 420px); aspect-ratio: 1; }
+  .logo-svg { width: 100%; height: 100%; overflow: visible; }
+
+  /* =====================================================
+     PHASE 1 — outer ring draws starting at top-left (~315°)
+  ===================================================== */
+  #outer-ring {
+    transform-origin: 1066.72px 1053.96px;
+    transform: rotate(-45deg);
+  }
+  #outer-ring circle {
+    stroke-dasharray: 5201;
+    stroke-dashoffset: 5201;
+    animation: drawOuterRing 1.25s cubic-bezier(0.4,0,0.2,1) 0s both;
+  }
+  @keyframes drawOuterRing {
+    from { stroke-dashoffset: 5201; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  /* =====================================================
+     PHASE 2 — satellite circles each draw from a unique angle
+  ===================================================== */
+  #z-circle {
+    transform-origin: 342.45px 641.36px;
+    transform: rotate(180deg);
+  }
+  #z-circle circle {
+    stroke-dasharray: 2015;
+    stroke-dashoffset: 2015;
+    animation: drawCircle2015 1.0s cubic-bezier(0.4,0,0.2,1) 0.25s both;
+  }
+  @keyframes drawCircle2015 {
+    from { stroke-dashoffset: 2015; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  #l-circle {
+    transform-origin: 1432px 787.42px;
+    transform: rotate(120deg);
+  }
+  #l-circle circle {
+    stroke-dasharray: 2061;
+    stroke-dashoffset: 2061;
+    animation: drawCircle2061 1.0s cubic-bezier(0.4,0,0.2,1) 0.25s both;
+  }
+  @keyframes drawCircle2061 {
+    from { stroke-dashoffset: 2061; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  #p-circle {
+    transform-origin: 1068.36px 1470.13px;
+    transform: rotate(90deg);
+  }
+  #p-circle circle {
+    stroke-dasharray: 2211;
+    stroke-dashoffset: 2211;
+    animation: drawCircle2211 1.0s cubic-bezier(0.4,0,0.2,1) 0.4s both;
+  }
+  @keyframes drawCircle2211 {
+    from { stroke-dashoffset: 2211; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  /* =====================================================
+     PHASE 3 — inner circles: draw in once, then pulse loop
+  ===================================================== */
+  #e-two circle, #i-circle circle, #e circle {
+    opacity: 0;
+  }
+
+  #e-two circle {
+    transform-origin: 1432.67px 786.69px;
+    animation: fadeIn 0.6s ease 1.4s both, pulse 3s ease-in-out 1.9s infinite;
+  }
+  #i-circle circle {
+    transform-origin: 342.1px 635.17px;
+    animation: fadeIn 0.6s ease 1.5s both, pulse 3s ease-in-out 2.0s infinite;
+  }
+  #e circle {
+    transform-origin: 1072.47px 1471.58px;
+    animation: fadeIn 0.6s ease 1.6s both, pulse 3s ease-in-out 2.1s infinite;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1);   }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.65; transform: scale(0.97); }
+    50%       { opacity: 1;   transform: scale(1.04); }
+  }
+
+  /* =====================================================
+     PHASE 4 — i-line and p-line draw simultaneously at 1.9s
+  ===================================================== */
+  #i-line {
+    stroke-dasharray: 862;
+    stroke-dashoffset: 862;
+    animation: drawILine 1.8s cubic-bezier(0.4,0,0.2,1) 1.9s both;
+  }
+  @keyframes drawILine {
+    from { stroke-dashoffset: 862; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  #p-line {
+    stroke-dasharray: 1388;
+    stroke-dashoffset: 1388;
+    animation: drawPLine 2.2s cubic-bezier(0.4,0,0.2,1) 1.9s both;
+  }
+  @keyframes drawPLine {
+    from { stroke-dashoffset: 1388; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  /* =====================================================
+     PHASE 5 — dashed trail: sequentially drawn following i-line momentum
+  ===================================================== */
+  #i-line-dot-one, #i-line-dot-two, #i-line-dot-three {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+    opacity: 0;
+  }
+
+  #i-line-dot-one {
+    animation: drawTrail 0.08s linear 3.70s both,
+               trailPulse 1.8s ease-in-out 3.78s infinite;
+  }
+  #i-line-dot-two {
+    animation: drawTrail 0.08s linear 3.78s both,
+               trailPulse 1.8s ease-in-out 3.86s infinite;
+  }
+  #i-line-dot-three {
+    animation: drawTrail 0.08s linear 3.86s both,
+               trailPulse 1.8s ease-in-out 3.94s infinite;
+  }
+
+  @keyframes drawTrail {
+    from { opacity: 1; stroke-dashoffset: 40; }
+    to   { opacity: 1; stroke-dashoffset: 0; }
+  }
+  @keyframes trailPulse {
+    0%, 100% { opacity: 0.35; stroke-dashoffset: 0; }
+    50%       { opacity: 1;   stroke-dashoffset: 0; }
+  }
+
+  /* =====================================================
+     PHASE 5 — dots with staggered twinkle + scale by size
+     Added precise transform-origins to keep them anchored
+  ===================================================== */
+  #z-dot-one, #z-dot-two, #z-dot-three,
+  #l-dot-one, #l-dot-two, #l-dot-three { opacity: 0; }
+
+  #z-dot-one   { transform-origin: 718.33px 504.55px;   animation: twinkleS 2s ease-in-out 3.70s both infinite; }
+  #z-dot-two   { transform-origin: 740.93px 606.50px;   animation: twinkleM 2s ease-in-out 3.95s both infinite; }
+  #z-dot-three { transform-origin: 736.37px 710.82px;   animation: twinkleL 2s ease-in-out 4.20s both infinite; }
+  #l-dot-one   { transform-origin: 1764.88px 1001.01px; animation: twinkleS 2s ease-in-out 3.80s both infinite; }
+  #l-dot-two   { transform-origin: 1713.29px 1077.55px; animation: twinkleM 2s ease-in-out 4.05s both infinite; }
+  #l-dot-three { transform-origin: 1636.4px 1143.86px;  animation: twinkleL 2s ease-in-out 4.30s both infinite; }
+
+  @keyframes twinkleS {
+    0%       { opacity: 0;   transform: scale(0.7); }
+    40%, 60% { opacity: 1;   transform: scale(1.15); }
+    100%     { opacity: 0.2; transform: scale(0.85); }
+  }
+  @keyframes twinkleM {
+    0%       { opacity: 0;   transform: scale(0.7); }
+    40%, 60% { opacity: 1;   transform: scale(1.25); }
+    100%     { opacity: 0.2; transform: scale(0.88); }
+  }
+  @keyframes twinkleL {
+    0%       { opacity: 0;   transform: scale(0.7); }
+    40%, 60% { opacity: 1;   transform: scale(1.35); }
+    100%     { opacity: 0.2; transform: scale(0.9); }
+  }
+
+  /* =====================================================
+     LABEL
+  ===================================================== */
+  .label {
+    margin-top: 2.4rem;
+    letter-spacing: 0.38em;
+    font-size: 0.7rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: labelIn 0.8s ease 0.8s forwards;
+  }
+  @keyframes labelIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 0.7; transform: translateY(0); }
+  }
+
+  .dots {
+    display: flex;
+    gap: 6px;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: labelIn 0.8s ease 1.0s forwards;
+  }
+  .dots span {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: dotBounce 1.2s ease-in-out infinite;
+  }
+  .dots span:nth-child(2) { animation-delay: 0.2s; }
+  .dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dotBounce {
+    0%, 100% { opacity: 0.2; transform: scaleY(0.7); }
+    50%       { opacity: 1;   transform: scaleY(1.3); }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2130.38 2105.87">
+
+    <rect width="2130.38" height="2105.87" fill="#0b132b"/>
+
+    <g id="outer-ring">
+      <circle cx="1066.72" cy="1053.96" r="827.74" fill="none" stroke="#f4d06f" stroke-miterlimit="10" stroke-width="14"/>
+    </g>
+
+    <g id="l-circle">
+      <circle cx="1432" cy="787.42" r="328" fill="none" stroke="#f4d06f" stroke-miterlimit="10" stroke-width="14"/>
+    </g>
+    <g id="z-circle">
+      <circle cx="342.45" cy="641.36" r="320.68" fill="none" stroke="#f4d06f" stroke-miterlimit="10" stroke-width="14"/>
+    </g>
+    <g id="p-circle">
+      <circle cx="1068.36" cy="1470.13" r="351.83" fill="none" stroke="#f4d06f" stroke-miterlimit="10" stroke-width="14"/>
+    </g>
+
+    <g id="e-two">
+      <circle cx="1432.67" cy="786.69" r="162.32" fill="none" stroke="#f4d06f" stroke-miterlimit="10" stroke-width="14"/>
+    </g>
+    <g id="i-circle">
+      <circle cx="342.1" cy="635.17" r="158.78" transform="translate(-348.93 427.93) rotate(-45)" fill="none" stroke="#f4d06f" stroke-miterlimit="10" stroke-width="14"/>
+    </g>
+    <g id="e">
+      <circle cx="1072.47" cy="1471.58" r="174.57" fill="none" stroke="#f4d06f" stroke-miterlimit="10" stroke-width="14"/>
+    </g>
+
+    <path id="i-line" d="M451.4,747.57c48.15,43.75,177.23,172.56,223.66,386.04,40.75,187.36-4.06,339.19-26.6,402.07" fill="none" stroke="#f4d06f" stroke-miterlimit="10" stroke-width="15"/>
+    <path id="p-line" d="M1416.27,1437.47c100.01,13.99,162.62,34.01,162.62,56.23,0,42.3-226.83,76.6-506.64,76.6s-506.64-34.29-506.64-76.6c0-21.15,56.71-40.3,148.39-54.16" fill="none" stroke="#f4d06f" stroke-miterlimit="10" stroke-width="15"/>
+
+    <path id="i-line-dot-one"   d="M634.6,1565.6c-4.56,10.65-9.15,20.82-13.69,30.48"  fill="none" stroke="#f4d06f" stroke-linecap="round" stroke-miterlimit="10" stroke-width="14"/>
+    <path id="i-line-dot-two"   d="M609.55,1617.05c-3.6,7.3-7.15,14.28-10.62,20.92"   fill="none" stroke="#f4d06f" stroke-linecap="round" stroke-miterlimit="10" stroke-width="11"/>
+    <path id="i-line-dot-three" d="M587.71,1656.91c-4.26,7.56-8.31,14.51-12.08,20.83"  fill="none" stroke="#f4d06f" stroke-linecap="round" stroke-miterlimit="10" stroke-width="7"/>
+
+    <g id="z-dot-one">  <circle cx="718.33" cy="504.55" r="18.69" fill="#f4d06f"/></g>
+    <g id="z-dot-two">  <circle cx="740.93" cy="606.50" r="27.64" fill="#f4d06f"/></g>
+    <g id="z-dot-three"><circle cx="736.37" cy="710.82" r="35.94" fill="#f4d06f"/></g>
+    <g id="l-dot-one">  <circle cx="1764.88" cy="1001.01" r="19.39" fill="#f4d06f"/></g>
+    <g id="l-dot-two">  <circle cx="1713.29" cy="1077.55" r="28.67" fill="#f4d06f"/></g>
+    <g id="l-dot-three"><circle cx="1636.4"  cy="1143.86" r="37.28" fill="#f4d06f"/></g>
+
+  </svg>
+</div>
+
+<p class="label">Loading</p>
+<div class="dots"><span></span><span></span><span></span></div>
+
+</body>
+</html>

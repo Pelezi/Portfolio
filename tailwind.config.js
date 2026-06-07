@@ -8,11 +8,11 @@ module.exports = {
     extend: {
       colors: {
         accent: {
-          DEFAULT: "#3B82F6",
-          light: "#60A5FA",
-          dark: "#1e40af",
-          muted: "rgba(59,130,246,0.37)",
-          hover: "rgba(59,130,246,0.53)",
+          DEFAULT: "#2563eb",
+          light: "#1d4ed8",
+          dark: "#1e3a8a",
+          muted: "rgba(37,99,235,0.33)",
+          hover: "rgba(37,99,235,0.48)",
         },
         surface: {
           dark: "#0c0513",

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import logo from "../Assets/logo.png";
 import { Link } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
 import {
@@ -31,16 +30,13 @@ const NavBar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-8 py-1 text-xl ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-8 py-3 text-xl ${
         navColour
           ? "bg-[#1b1a2ea9] shadow-[0_10px_10px_0_rgba(9,5,29,0.171)] backdrop-blur-[15px]"
           : "bg-transparent"
       } md:bg-transparent ${expand ? "bg-surface-navbarSolid" : ""}`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between flex-wrap">
-        <a href="/" className="flex items-center text-white no-underline">
-          <img src={logo} className="h-[1.4em] w-[2.5em]" alt="brand" />
-        </a>
+      <div className="max-w-7xl mx-auto flex items-center justify-end flex-wrap">
 
         {/* Hamburger */}
         <button
