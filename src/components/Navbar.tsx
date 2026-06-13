@@ -1,133 +1,114 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 import { CgGitFork } from "react-icons/cg";
-import {
-  AiFillStar,
-  AiOutlineHome,
-  AiOutlineFundProjectionScreen,
-  AiOutlineUser,
-} from "react-icons/ai";
-import { CgFileDocument } from "react-icons/cg";
+import { AiFillStar, AiOutlineHome, AiOutlineFundProjectionScreen, AiOutlineUser } from "react-icons/ai";
+import { MdWorkOutline } from "react-icons/md";
+import { BsStars } from "react-icons/bs";
+
+const navItems = [
+  { to: "/", label: "Início", icon: AiOutlineHome, end: true },
+  { to: "/about", label: "Sobre", icon: AiOutlineUser, end: false },
+  { to: "/project", label: "Projetos", icon: AiOutlineFundProjectionScreen, end: false },
+  { to: "/experience", label: "Experiência", icon: MdWorkOutline, end: false },
+];
 
 const NavBar: React.FC = () => {
   const [expand, setExpand] = useState(false);
-  const [navColour, updateNavbar] = useState(false);
-
-  useEffect(() => {
-    function scrollHandler() {
-      if (window.scrollY >= 20) {
-        updateNavbar(true);
-      } else {
-        updateNavbar(false);
-      }
-    }
-
-    window.addEventListener("scroll", scrollHandler);
-    return () => window.removeEventListener("scroll", scrollHandler);
-  }, []);
-
   const closeNav = () => setExpand(false);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-8 py-3 text-xl ${
-        navColour
-          ? "bg-[#1b1a2ea9] shadow-[0_10px_10px_0_rgba(9,5,29,0.171)] backdrop-blur-[15px]"
-          : "bg-transparent"
-      } md:bg-transparent ${expand ? "bg-surface-navbarSolid" : ""}`}
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-end flex-wrap">
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 py-3 backdrop-blur-md bg-[#0d0b1e]/60 border-b border-white/10">
+      <nav className="max-w-6xl mx-auto flex items-center justify-between gap-4">
 
-        {/* Hamburger */}
+        {/* Brand */}
+        <Link to="/" onClick={closeNav} className="flex items-center gap-1.5 text-sm font-semibold no-underline">
+          <BsStars className="text-accent text-base" />
+          <span className="text-gradient font-semibold">Pelezi</span>
+        </Link>
+
+        {/* Desktop pill nav */}
+        <div className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1.5 backdrop-blur-md">
+          {navItems.map(({ to, label, icon: Icon, end }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={end}
+              onClick={closeNav}
+              className={({ isActive }) =>
+                `flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs no-underline transition-all duration-100 ${
+                  isActive
+                    ? "text-white bg-accent shadow-[0_0_20px_-4px_rgba(99,102,241,0.6)]"
+                    : "text-white/70 hover:text-white hover:bg-accent/10"
+                }`
+              }
+            >
+              <Icon className="text-sm" />
+              {label}
+            </NavLink>
+          ))}
+        </div>
+
+        {/* GitHub star button (desktop) */}
+        <a
+          href="https://github.com/Pelezi"
+          target="_blank"
+          rel="noreferrer"
+          className="hidden md:flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border border-accent/40 bg-accent/10 text-accent hover:bg-accent/20 transition-colors no-underline"
+        >
+          <CgGitFork className="text-sm" />
+          <AiFillStar className="text-sm" />
+        </a>
+
+        {/* Hamburger (mobile) */}
         <button
           className="md:hidden relative bg-transparent border-transparent p-2 focus:outline-none"
           onClick={() => setExpand(!expand)}
           aria-label="Toggle navigation"
         >
-          <span
-            className={`block bg-accent h-1 w-[27px] transition-transform duration-300 ${
-              expand
-                ? "absolute left-3 top-2.5 rotate-[135deg] opacity-90"
-                : "mt-[5px] mb-[5px]"
-            }`}
-          />
-          <span
-            className={`block bg-accent h-1 w-[27px] transition-transform duration-300 ${
-              expand ? "h-3 invisible bg-transparent" : "mt-[5px] mb-[5px]"
-            }`}
-          />
-          <span
-            className={`block bg-accent h-1 w-[27px] transition-transform duration-300 ${
-              expand
-                ? "absolute left-3 top-2.5 -rotate-[135deg] opacity-90"
-                : "mt-[5px] mb-[5px]"
-            }`}
-          />
+          <span className={`block bg-accent h-0.5 w-7 transition-all duration-300 ${expand ? "absolute left-3 top-2.5 rotate-[135deg]" : "mb-1.5"}`} />
+          <span className={`block bg-accent h-0.5 w-7 transition-all duration-300 ${expand ? "invisible" : "mb-1.5"}`} />
+          <span className={`block bg-accent h-0.5 w-7 transition-all duration-300 ${expand ? "absolute left-3 top-2.5 -rotate-[135deg]" : ""}`} />
         </button>
+      </nav>
 
-        {/* Nav Links */}
-        <div
-          className={`w-full md:w-auto md:flex md:items-center ${
-            expand ? "block" : "hidden"
-          }`}
-        >
-          <ul className="flex flex-col md:flex-row md:items-center md:ml-auto list-none gap-0 md:gap-0 p-0 m-0">
-            <li className="relative md:ml-5">
-              <Link
-                to="/"
-                onClick={closeNav}
-                className="block text-white no-underline py-3 px-4 font-normal transition-all duration-300 relative group"
-              >
-                <AiOutlineHome className="inline-block mb-0.5" /> Início
-                <span className="hidden md:block absolute bottom-[1px] left-0 h-[5px] w-0 rounded-2xl bg-accent transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </li>
-            <li className="relative md:ml-5">
-              <Link
-                to="/about"
-                onClick={closeNav}
-                className="block text-white no-underline py-3 px-4 font-normal transition-all duration-300 relative group"
-              >
-                <AiOutlineUser className="inline-block mb-0.5" /> Sobre
-                <span className="hidden md:block absolute bottom-[1px] left-0 h-[5px] w-0 rounded-2xl bg-accent transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </li>
-            <li className="relative md:ml-5">
-              <Link
-                to="/project"
-                onClick={closeNav}
-                className="block text-white no-underline py-3 px-4 font-normal transition-all duration-300 relative group"
-              >
-                <AiOutlineFundProjectionScreen className="inline-block mb-0.5" />{" "}
-                Projetos
-                <span className="hidden md:block absolute bottom-[1px] left-0 h-[5px] w-0 rounded-2xl bg-accent transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </li>
-            <li className="relative md:ml-5">
-              <Link
-                to="/resume"
-                onClick={closeNav}
-                className="block text-white no-underline py-3 px-4 font-normal transition-all duration-300 relative group"
-              >
-                <CgFileDocument className="inline-block mb-0.5" /> Currículo
-                <span className="hidden md:block absolute bottom-[1px] left-0 h-[5px] w-0 rounded-2xl bg-accent transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </li>
-            <li className="relative md:ml-5 pt-2.5 md:pt-0">
+      {/* Mobile menu */}
+      {expand && (
+        <div className="md:hidden mt-2 pb-3 border-t border-white/10 pt-3">
+          <ul className="flex flex-col gap-1 list-none p-0 m-0">
+            {navItems.map(({ to, label, icon: Icon, end }) => (
+              <li key={to}>
+                <NavLink
+                  to={to}
+                  end={end}
+                  onClick={closeNav}
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm no-underline transition-all ${
+                      isActive
+                        ? "text-white bg-accent/20 text-accent"
+                        : "text-white/70 hover:text-white hover:bg-white/5"
+                    }`
+                  }
+                >
+                  <Icon className="text-base" />
+                  {label}
+                </NavLink>
+              </li>
+            ))}
+            <li className="mt-1 px-4">
               <a
                 href="https://github.com/Pelezi"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 bg-accent-muted text-white no-underline py-1 px-4 rounded leading-[1.4em] transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-hover"
+                className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border border-accent/40 bg-accent/10 text-accent hover:bg-accent/20 transition-colors no-underline"
               >
-                <CgGitFork className="text-lg" />{" "}
-                <AiFillStar className="text-base" />
+                <CgGitFork className="text-sm" />
+                <AiFillStar className="text-sm" />
               </a>
             </li>
           </ul>
         </div>
-      </div>
-    </nav>
+      )}
+    </header>
   );
 };
 

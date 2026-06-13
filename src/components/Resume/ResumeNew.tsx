@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Particle from "../Particle";
 import pdf from "../../Assets/../Assets/Soumyajit_Behera.pdf";
 import { AiOutlineDownload } from "react-icons/ai";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -15,8 +14,7 @@ const ResumeNew: React.FC = () => {
 
   return (
     <div>
-      <div className="relative w-full pt-[110px] pb-8 bg-section-gradient text-white">
-        <Particle />
+      <div className="relative w-full pt-[110px] pb-8 text-white">
         <div className="flex justify-center relative">
           <a
             href={pdf}

@@ -1,0 +1,30 @@
+[
+  {
+    "imgKey": "chatify",
+    "title": "Talentos",
+    "description": "Um aplicativo web de gestão financeira. O sistema conta com uma API desenvolvida em Node.js com NestJS e inclui uma funcionalidade integrada para registrar transações financeiras diretamente via mensagens do WhatsApp.",
+    "demoLink": "https://talentos.pelezi.com.br",
+    "tags": ["Node.js", "NestJS", "WhatsApp"]
+  },
+  {
+    "imgKey": "bitsOfCode",
+    "title": "Portal Uvas",
+    "description": "Um sistema web focado na gestão e organização de membros. Desenvolvido com tecnologias modernas para facilitar o gerenciamento de informações e processos.",
+    "demoLink": "https://uvas.pelezi.com.br",
+    "tags": ["Next.js", "React", "TypeScript"]
+  },
+  {
+    "imgKey": "editor",
+    "title": "Gabriel",
+    "description": "Um bot de WhatsApp projetado para centralizar e gerenciar as comunicações entre os projetos 'Portal Uvas' e 'Talentos'. Automatiza processos de comunicação e integração entre sistemas.",
+    "demoLink": "https://gabriel.pelezi.com.br",
+    "tags": ["Node.js", "WhatsApp API"]
+  },
+  {
+    "imgKey": "leaf",
+    "title": "obs-holyrics-plugin-finder",
+    "description": "Desenvolvimento e configuração de um plugin em C++ utilizando CMake para o ambiente de build. Um projeto que demonstra habilidades em desenvolvimento de baixo nível e configuração de ferramentas de build.",
+    "ghLink": "https://github.com/Pelezi/obs-holyrics-plugin-finder",
+    "tags": ["C++", "CMake"]
+  }
+]

@@ -8,11 +8,12 @@ module.exports = {
     extend: {
       colors: {
         accent: {
-          DEFAULT: "#2563eb",
-          light: "#1d4ed8",
-          dark: "#1e3a8a",
-          muted: "rgba(37,99,235,0.33)",
-          hover: "rgba(37,99,235,0.48)",
+          DEFAULT: "#6366f1",
+          light: "#818cf8",
+          dark: "#4338ca",
+          muted: "rgba(99,102,241,0.33)",
+          hover: "rgba(99,102,241,0.48)",
+          highlight: "#f4d06f",
         },
         surface: {
           dark: "#0c0513",
@@ -22,7 +23,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        mono: ['"PT Mono"', "monospace"],
+        sans: ['"Space Grotesk"', "sans-serif"],
+        mono: ['"JetBrains Mono"', '"PT Mono"', "monospace"],
       },
       backgroundImage: {
         "section-gradient":

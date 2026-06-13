@@ -1,67 +1,51 @@
 import React from "react";
-import { SiNextdotjs } from "react-icons/si";
-import C from "../../Assets/TechIcons/C++.svg";
+import { SiNextdotjs, SiNestjs, SiPhp, SiPrisma } from "react-icons/si";
 import Javascript from "../../Assets/TechIcons/Javascript.svg";
 import Node from "../../Assets/TechIcons/Node.svg";
 import ReactIcon from "../../Assets/TechIcons/React.svg";
 import Python from "../../Assets/TechIcons/Python.svg";
 import Typescript from "../../Assets/TechIcons/Typescript.svg";
 import Git from "../../Assets/TechIcons/Git.svg";
-import Mongo from "../../Assets/TechIcons/Mongo.svg";
 import SQL from "../../Assets/TechIcons/SQL.svg";
 import Tailwind from "../../Assets/TechIcons/Tailwind.svg";
+import Redis from "../../Assets/TechIcons/Redis.svg";
+import AWS from "../../Assets/TechIcons/AWS.svg";
+import Docker from "../../Assets/TechIcons/Docker.svg";
 
-const techIconClass =
-  "flex items-center justify-center text-base m-4 md:m-4 px-5 py-2.5 opacity-95 outline outline-[1.7px] outline-blue-400/60 rounded-3xl shadow-[4px_5px_4px_3px_rgba(37,99,235,0.14)] transition-all duration-400 w-fit cursor-pointer hover:scale-105 hover:outline-[2.2px] hover:outline-blue-400/90 text-white";
+const skills = [
+  { label: "TypeScript",   icon: <img src={Typescript} className="h-4 w-4" alt="" /> },
+  { label: "Node.js",      icon: <img src={Node} className="h-4 w-4" alt="" /> },
+  { label: "JavaScript",   icon: <img src={Javascript} className="h-4 w-4" alt="" /> },
+  { label: "React.js",     icon: <img src={ReactIcon} className="h-4 w-4" alt="" /> },
+  { label: "Next.js",      icon: <SiNextdotjs className="h-4 w-4 shrink-0" /> },
+  { label: "NestJS",       icon: <SiNestjs className="h-4 w-4 shrink-0" /> },
+  { label: "PHP",          icon: <SiPhp className="h-4 w-4 shrink-0" /> },
+  { label: "Tailwind CSS", icon: <img src={Tailwind} className="h-4 w-4" alt="" /> },
+  { label: "Prisma",       icon: <SiPrisma className="h-4 w-4 shrink-0" /> },
+  { label: "PostgreSQL",   icon: <img src={SQL} className="h-4 w-4" alt="" /> },
+  { label: "Redis",        icon: <img src={Redis} className="h-4 w-4" alt="" /> },
+  { label: "AWS",          icon: <img src={AWS} className="h-4 w-4" alt="" /> },
+  { label: "Docker",       icon: <img src={Docker} className="h-4 w-4" alt="" /> },
+  { label: "Python",       icon: <img src={Python} className="h-4 w-4" alt="" /> },
+  { label: "Git",          icon: <img src={Git} className="h-4 w-4" alt="" /> },
+];
 
 const Techstack: React.FC = () => {
   return (
-    <div className="flex flex-wrap justify-center pb-[50px]">
-      <div className={techIconClass}>
-        <img src={Node} alt="node" />
-        <div className="flex items-center ml-2.5 text-white">Node.js</div>
+    <section className="py-16 text-center">
+      <p className="text-xs uppercase tracking-[0.3em] text-accent/80 mb-3">Stack</p>
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-10">
+        Minhas <span className="text-gradient">habilidades</span>
+      </h2>
+      <div className="flex flex-wrap justify-center gap-3">
+        {skills.map(({ label, icon }) => (
+          <span key={label} className="chip text-white/90">
+            {icon}
+            {label}
+          </span>
+        ))}
       </div>
-      <div className={techIconClass}>
-        <img src={Javascript} alt="javascript" />
-        <div className="flex items-center ml-2.5 text-white">Javascript</div>
-      </div>
-      <div className={techIconClass}>
-        <img src={Typescript} alt="typescript" />
-        <div className="flex items-center ml-2.5 text-white">Typescript</div>
-      </div>
-      <div className={techIconClass}>
-        <img src={ReactIcon} alt="react" />
-        <div className="flex items-center ml-2.5 text-white">React.js</div>
-      </div>
-      <div className={techIconClass}>
-        <SiNextdotjs fontSize={"24px"} />
-        <div className="flex items-center ml-2.5 text-white">Next.js</div>
-      </div>
-      <div className={techIconClass}>
-        <img src={Tailwind} alt="tailwind" />
-        <div className="flex items-center ml-2.5 text-white">Tailwind CSS</div>
-      </div>
-      <div className={techIconClass}>
-        <img src={Python} alt="Python" />
-        <div className="flex items-center ml-2.5 text-white">Python</div>
-      </div>
-      <div className={techIconClass}>
-        <img src={C} alt="C++" />
-        <div className="flex items-center ml-2.5 text-white">C/C++</div>
-      </div>
-      <div className={techIconClass}>
-        <img src={Git} alt="git" />
-        <div className="flex items-center ml-2.5 text-white">Git</div>
-      </div>
-      <div className={techIconClass}>
-        <img src={Mongo} alt="mongoDb" />
-        <div className="flex items-center ml-2.5 text-white">MongoDB</div>
-      </div>
-      <div className={techIconClass}>
-        <img src={SQL} alt="SQL" />
-        <div className="flex items-center ml-2.5 text-white">PostgreSQL</div>
-      </div>
-    </div>
+    </section>
   );
 };
 

@@ -194,7 +194,7 @@ const Pre: React.FC<PreProps> = ({ load, alwaysVisible = false }) => {
             margin-top: 2.4rem;
             letter-spacing: 0.38em;
             font-size: 0.7rem;
-            color: #f4d06f;
+            color: #6366f1;
             text-transform: uppercase;
             opacity: 0;
             z-index: 1;
@@ -214,7 +214,7 @@ const Pre: React.FC<PreProps> = ({ load, alwaysVisible = false }) => {
             width: 4px;
             height: 4px;
             border-radius: 999px;
-            background: #f4d06f;
+            background: #6366f1;
             animation: dotBounce 1.2s ease-in-out infinite;
           }
 

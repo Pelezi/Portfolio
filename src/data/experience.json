@@ -1,0 +1,28 @@
+[
+  {
+    "dateRange": "Jan 2024 – Presente",
+    "role": "Desenvolvedor Full Stack",
+    "company": "Pelezi",
+    "location": "Brasil · Remoto",
+    "description": "Desenvolvimento de sistemas e aplicações web para clientes internos e externos.",
+    "highlights": [
+      "Criação do sistema Talentos para gestão financeira integrada com WhatsApp",
+      "Desenvolvimento do Portal Uvas para gerenciamento de membros",
+      "Implementação de bots de comunicação via WhatsApp"
+    ],
+    "technologies": ["TypeScript", "React", "Node.js", "PostgreSQL", "WhatsApp API"]
+  },
+  {
+    "dateRange": "...",
+    "role": "Cargo · Empresa",
+    "company": "Empresa",
+    "location": "Cidade, Estado · Presencial / Remoto / Híbrido",
+    "description": "Descrição das suas responsabilidades e atividades nesta posição.",
+    "highlights": [
+      "Conquista ou responsabilidade principal 1",
+      "Conquista ou responsabilidade principal 2",
+      "Conquista ou responsabilidade principal 3"
+    ],
+    "technologies": ["Tecnologia 1", "Tecnologia 2", "Tecnologia 3"]
+  }
+]

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { ReactComponent as PeleziLogo } from "../../Assets/Pelezi.svg";
-import Particle from "../Particle";
+import { Link } from "react-router-dom";
 import Home2 from "./Home2";
 import Type from "./Type";
 import {
@@ -8,6 +8,7 @@ import {
   AiFillInstagram,
 } from "react-icons/ai";
 import { FaLinkedinIn } from "react-icons/fa";
+import { BsArrowRight } from "react-icons/bs";
 
 type LogoLetter = "P" | "E" | "L" | "Z" | "I" | null;
 type ActiveLogoState = Exclude<LogoLetter, null> | "ALL" | null;
@@ -22,7 +23,25 @@ const LETTER_GROUPS: Record<Exclude<LogoLetter, null>, string[]> = {
 
 const Home: React.FC = () => {
   const logoWrapperRef = useRef<HTMLDivElement>(null);
-  const [activeLetter, setActiveLetter] = useState<ActiveLogoState>(null);
+  const letterLabelRef = useRef<HTMLSpanElement>(null);
+
+  // Direct DOM mutation — no React re-render in the hot path so CSS starts instantly.
+  const setActiveDirect = useCallback((letter: ActiveLogoState) => {
+    const wrapper = logoWrapperRef.current;
+    const label = letterLabelRef.current;
+    if (wrapper) wrapper.dataset.activeLetter = letter ?? "";
+    if (label) {
+      if (letter) {
+        label.textContent = letter === "ALL" ? "PELEZI" : letter;
+        label.style.opacity = "1";
+        label.style.transform = "translateY(0)";
+      } else {
+        label.textContent = " ";
+        label.style.opacity = "0";
+        label.style.transform = "translateY(4px)";
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const wrapper = logoWrapperRef.current;
@@ -128,8 +147,8 @@ const Home: React.FC = () => {
           return;
         }
 
-        const onEnter = () => setActiveLetter(letter);
-        const onLeave = () => setActiveLetter((current) => (current === letter ? null : current));
+        const onEnter = () => setActiveDirect(letter);
+        const onLeave = () => { if (wrapper.dataset.activeLetter === letter) setActiveDirect(null); };
 
         element.addEventListener("mouseenter", onEnter);
         element.addEventListener("mouseleave", onLeave);
@@ -147,8 +166,8 @@ const Home: React.FC = () => {
         return;
       }
 
-      const onEnter = () => setActiveLetter(letter);
-      const onLeave = () => setActiveLetter((current) => (current === letter ? null : current));
+      const onEnter = () => setActiveDirect(letter);
+      const onLeave = () => { if (wrapper.dataset.activeLetter === letter) setActiveDirect(null); };
 
       zone.addEventListener("mouseenter", onEnter);
       zone.addEventListener("mouseleave", onLeave);
@@ -167,47 +186,66 @@ const Home: React.FC = () => {
         hitLayer.remove();
       }
     };
-  }, []);
+  }, [setActiveDirect]);
 
   return (
     <section>
-      <div className="relative w-full bg-top bg-no-repeat pb-8 pt-8" id="home">
-        <Particle />
-        <div className="max-w-7xl mx-auto px-4 pt-36 pb-8 text-left text-gray-100">
-          <div className="flex flex-wrap">
-            <div className="w-full md:w-7/12 pt-20">
-              <h1 className="text-[2.4em] pl-[50px] pb-4">
+      <div className="relative w-full pb-8 pt-8" id="home">
+        <div className="w-full pl-16 md:pl-32 pr-4 pt-36 pb-8 text-left text-gray-100">
+          <div className="flex flex-wrap md:flex-nowrap md:items-start md:gap-4">
+            <div className="w-full md:w-[45%] shrink-0">
+              <span className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent/90 mb-5 fade-up">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                Disponível para projetos
+              </span>
+
+              <h1 className="text-[2em] pb-3 fade-up" style={{ animationDelay: "80ms" }}>
                 Olá!{" "}
                 <span className="animate-wave inline-block origin-[70%_70%]" role="img" aria-labelledby="wave">
                   👋🏻
                 </span>
               </h1>
 
-              <h1 className="text-[2.5em] pl-[45px]">
-                EU SOU
-                <strong className="text-accent"> ALESSANDRO CARDOSO</strong>
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight fade-up" style={{ animationDelay: "160ms" }}>
+                EU SOU{" "}
+                <br className="hidden md:block" />
+                <span className="text-gradient">ALESSANDRO CARDOSO</span>
               </h1>
 
-              <p className="pl-[45px] mt-3 text-white text-lg md:text-xl">
+              <p className="mt-4 text-white/70 text-base fade-up" style={{ animationDelay: "240ms" }}>
                 Também conhecido como{" "}
                 <span
-                  className="text-[#f4d06f] cursor-pointer transition-all duration-200 hover:drop-shadow-[0_0_6px_rgba(244,208,111,0.9)]"
-                  onMouseEnter={() => setActiveLetter("ALL")}
-                  onMouseLeave={() => setActiveLetter(null)}
+                  className="text-accent cursor-pointer transition-all duration-100 hover:drop-shadow-[0_0_6px_rgba(99,102,241,0.9)]"
+                  onMouseEnter={() => setActiveDirect("ALL")}
+                  onMouseLeave={() => setActiveDirect(null)}
                 >
                   Pelezi
                 </span>
               </p>
 
-              <div className="p-[50px] text-left">
+              <div className="pt-5 text-left fade-up" style={{ animationDelay: "320ms" }}>
                 <Type />
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3 fade-up" style={{ animationDelay: "400ms" }}>
+                <Link
+                  to="/project"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-white text-sm font-medium shadow-[0_10px_30px_-10px_rgba(99,102,241,0.7)] hover:shadow-[0_15px_40px_-10px_rgba(99,102,241,0.9)] transition-all hover:-translate-y-0.5 no-underline"
+                >
+                  Ver Projetos <BsArrowRight />
+                </Link>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 bg-white/5 text-white text-sm hover:bg-white/10 transition-all no-underline"
+                >
+                  Sobre mim
+                </Link>
               </div>
             </div>
 
-            <div className="w-full md:w-5/12 pb-5 flex justify-center items-center">
+            <div className="w-full md:w-[55%] pb-5 flex justify-center items-center">
               <div
                 ref={logoWrapperRef}
-                data-active-letter={activeLetter ?? ""}
                 className="home-logo-interactive flex flex-col items-center"
               >
                 <PeleziLogo
@@ -215,11 +253,11 @@ const Home: React.FC = () => {
                   className="w-[78vw] max-w-[540px] md:w-[46vw] md:max-w-[640px] h-auto"
                 />
                 <span
-                  className={`mt-2 min-h-[2.2rem] text-3xl font-semibold tracking-[0.25em] text-[#f4d06f] transition-all duration-300 ${
-                    activeLetter ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"
-                  }`}
+                  ref={letterLabelRef}
+                  className="mt-2 min-h-[3.5rem] text-5xl font-semibold tracking-[0.25em] text-accent"
+                  style={{ opacity: 0, transform: "translateY(4px)", transition: "opacity 80ms ease-out, transform 80ms ease-out" }}
                 >
-                  {activeLetter === "ALL" ? "PELEZI" : activeLetter ?? " "}
+                  {" "}
                 </span>
               </div>
             </div>
@@ -232,8 +270,18 @@ const Home: React.FC = () => {
           display: none;
         }
 
+        .home-logo-interactive {
+          transition: transform 150ms ease-out;
+        }
+
+        .home-logo-interactive[data-active-letter="ALL"] {
+          transform: scale(1.06);
+        }
+
         .home-logo-interactive svg [id] {
-          transition: opacity 220ms ease, filter 220ms ease, transform 220ms ease;
+          transition: opacity 80ms ease-out, transform 80ms ease-out;
+          transform-box: fill-box;
+          transform-origin: center;
         }
 
         .home-logo-interactive .letter-hit-zone {
@@ -268,8 +316,6 @@ const Home: React.FC = () => {
         .home-logo-interactive[data-active-letter="ALL"] #i-line-dot-two,
         .home-logo-interactive[data-active-letter="ALL"] #i-line-dot-three {
           opacity: 1 !important;
-          filter: drop-shadow(0 0 7px rgba(244, 208, 111, 0.9));
-          transform: translateZ(0) scale(1.012);
         }
 
         .home-logo-interactive[data-active-letter="P"] #p-circle,
@@ -290,8 +336,7 @@ const Home: React.FC = () => {
         .home-logo-interactive[data-active-letter="I"] #i-line-dot-two,
         .home-logo-interactive[data-active-letter="I"] #i-line-dot-three {
           opacity: 1 !important;
-          filter: drop-shadow(0 0 6px rgba(244, 208, 111, 0.85));
-          transform: translateZ(0) scale(1.015);
+          transform: scale(1.015);
         }
 
         .home-logo-interactive #p-circle,
@@ -317,49 +362,39 @@ const Home: React.FC = () => {
 
       <Home2 />
 
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex flex-wrap pt-[50px] pb-[80px]">
-          <div className="w-full text-center pt-6 text-white">
-            <h1>Me Encontre</h1>
-            <p>
-              Fique à vontade para se <span className="text-accent">conectar </span>comigo
-            </p>
-            <ul className="flex justify-center pt-4 list-none p-0">
-              <li className="inline-block px-4">
-                <a
-                  href="https://github.com/Pelezi"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="relative inline-flex items-center justify-center w-10 h-10 text-[1.2em] leading-8 bg-white rounded-full transition-all duration-500 text-accent-dark hover:text-accent hover:shadow-[0_0_5px_theme(colors.accent.DEFAULT)] group"
-                >
-                  <span className="absolute inset-0 rounded-full bg-accent-dark transition-transform duration-500 scale-90 -z-10 group-hover:scale-110 group-hover:shadow-[0_0_15px_theme(colors.accent.DEFAULT)]" />
-                  <AiFillGithub />
-                </a>
-              </li>
-              <li className="inline-block px-4">
-                <a
-                  href="https://www.linkedin.com/in/alessandro-cardoso-500418163/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="relative inline-flex items-center justify-center w-10 h-10 text-[1.2em] leading-8 bg-white rounded-full transition-all duration-500 text-accent-dark hover:text-accent hover:shadow-[0_0_5px_theme(colors.accent.DEFAULT)] group"
-                >
-                  <span className="absolute inset-0 rounded-full bg-accent-dark transition-transform duration-500 scale-90 -z-10 group-hover:scale-110 group-hover:shadow-[0_0_15px_theme(colors.accent.DEFAULT)]" />
-                  <FaLinkedinIn />
-                </a>
-              </li>
-              <li className="inline-block px-4">
-                <a
-                  href="https://www.instagram.com/opelezi"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="relative inline-flex items-center justify-center w-10 h-10 text-[1.2em] leading-8 bg-white rounded-full transition-all duration-500 text-accent-dark hover:text-accent hover:shadow-[0_0_5px_theme(colors.accent.DEFAULT)] group"
-                >
-                  <span className="absolute inset-0 rounded-full bg-accent-dark transition-transform duration-500 scale-90 -z-10 group-hover:scale-110 group-hover:shadow-[0_0_15px_theme(colors.accent.DEFAULT)]" />
-                  <AiFillInstagram />
-                </a>
-              </li>
-            </ul>
-          </div>
+      <div className="w-full px-6 py-14 text-center">
+        <p className="text-xs uppercase tracking-[0.3em] text-white/50">Me Encontre</p>
+        <p className="mt-3 text-sm text-white/80">
+          Fique à vontade para se <span className="text-accent">conectar</span> comigo
+        </p>
+        <div className="mt-5 flex items-center justify-center gap-3">
+          <a
+            href="https://github.com/Pelezi"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-accent/40 bg-accent/10 text-accent transition-all duration-300 hover:bg-accent/25 hover:-translate-y-0.5"
+          >
+            <AiFillGithub className="text-lg" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/alessandro-cardoso-500418163/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-accent/40 bg-accent/10 text-accent transition-all duration-300 hover:bg-accent/25 hover:-translate-y-0.5"
+          >
+            <FaLinkedinIn className="text-lg" />
+          </a>
+          <a
+            href="https://www.instagram.com/opelezi"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-accent/40 bg-accent/10 text-accent transition-all duration-300 hover:bg-accent/25 hover:-translate-y-0.5"
+          >
+            <AiFillInstagram className="text-lg" />
+          </a>
         </div>
       </div>
     </section>

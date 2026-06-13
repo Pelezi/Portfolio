@@ -1,5 +1,4 @@
 import React from "react";
-import Particle from "../Particle";
 import Github from "./Github";
 import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
@@ -8,36 +7,39 @@ import Toolstack from "./Toolstack";
 
 const About: React.FC = () => {
   return (
-    <>
-      <Particle />
-      <div className="relative pt-[150px] pb-8 text-white w-full">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-16 py-4">
-            <div className="w-full md:w-7/12 flex flex-col justify-center pt-[30px] pb-[50px] text-left">
-              <h1 className="text-[2.1em] pb-5 text-left">
-                Saiba Quem <strong className="text-accent">EU SOU</strong>
-              </h1>
-              <Aboutcard />
-            </div>
-            <div className="w-full md:w-5/12 pt-0 md:pt-0 pb-[20px] flex md:justify-end justify-center">
-              <img src={avatarImg} alt="about" className="w-full max-w-[420px] h-auto" />
+    <div className="relative pt-[150px] pb-8 text-white w-full">
+      <div className="max-w-5xl mx-auto px-6">
+
+        {/* Bio section */}
+        <section className="grid md:grid-cols-[1fr_auto] gap-12 items-center fade-up pb-4">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-accent/80 mb-3">Sobre mim</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Saiba quem <span className="text-gradient">eu sou</span>
+            </h1>
+            <Aboutcard />
+          </div>
+
+          <div className="flex justify-center md:justify-end">
+            <div className="relative">
+              <div className="absolute -inset-6 rounded-full bg-accent/25 blur-2xl" />
+              <div className="relative w-52 h-52 rounded-full ring-4 ring-accent/50 glow-pulse overflow-hidden">
+                <img src={avatarImg} alt="about" className="w-full h-full object-cover" />
+              </div>
             </div>
           </div>
-          <h1 className="text-white text-[2.3em] font-medium pt-2.5 text-center">
-            Minhas <strong className="text-accent">Habilidades</strong>
-          </h1>
+        </section>
 
-          <Techstack />
+        {/* Skills */}
+        <Techstack />
 
-          <h1 className="text-white text-[2.3em] font-medium pt-2.5 text-center">
-            <strong className="text-accent">Ferramentas</strong> que uso
-          </h1>
-          <Toolstack />
+        {/* Tools */}
+        <Toolstack />
 
-          <Github />
-        </div>
+        {/* GitHub calendar */}
+        <Github />
       </div>
-    </>
+    </div>
   );
 };
 

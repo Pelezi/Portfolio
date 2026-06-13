@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
 
@@ -9,6 +9,7 @@ interface ProjectCardsProps {
   ghLink?: string;
   isBlog: boolean;
   demoLink?: string;
+  tags?: string[];
 }
 
 const ProjectCards: React.FC<ProjectCardsProps> = ({
@@ -18,36 +19,82 @@ const ProjectCards: React.FC<ProjectCardsProps> = ({
   ghLink,
   isBlog,
   demoLink,
+  tags = [],
 }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    el.classList.add("fade-in-hidden");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.remove("fade-in-hidden");
+          el.classList.add("fade-in-visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="flex flex-col h-full shadow-[0_4px_5px_3px_rgba(59,130,246,0.46)] text-white bg-transparent opacity-90 transition-all duration-500 rounded-lg overflow-hidden hover:scale-[1.02] hover:shadow-[0_4px_4px_5px_rgba(59,130,246,0.76)]">
-      <img src={imgPath} alt="card-img" className="p-5 opacity-80 rounded-[10px] w-full" />
-      <div className="flex flex-col flex-1 p-5">
-        <h5 className="text-lg font-semibold mb-2">{title}</h5>
-        <p className="text-justify flex-1 text-sm">
+    <div ref={cardRef} className="card-glow rounded-2xl overflow-hidden flex flex-col h-full">
+      {/* Project image */}
+      <div className="w-full h-44 overflow-hidden">
+        <img
+          src={imgPath}
+          alt={title}
+          className="w-full h-full object-cover opacity-90 transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+
+      {/* Card body */}
+      <div className="flex flex-col flex-1 p-5 gap-3">
+        <h3 className="text-lg font-semibold text-white">{title}</h3>
+
+        <p className="text-sm text-white/80 flex-1 leading-relaxed text-left">
           {description}
         </p>
-        <div className="mt-4">
+
+        {/* Tech tags */}
+        {tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-[11px] px-2 py-0.5 rounded-full border border-accent/30 text-accent/90 bg-accent/5"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Action buttons */}
+        <div className="flex gap-2.5 flex-wrap mt-1">
           {ghLink && (
             <a
               href={ghLink}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 bg-accent text-white no-underline py-1.5 px-4 rounded transition-colors duration-300 hover:bg-accent-dark"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/15 text-accent border border-accent/40 hover:bg-accent/25 text-sm transition-all no-underline"
             >
-              <BsGithub className="inline-block" />
+              <BsGithub />
               {isBlog ? "Blog" : "GitHub"}
             </a>
           )}
-
           {!isBlog && demoLink && (
             <a
               href={demoLink}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 bg-accent text-white no-underline py-1.5 px-4 rounded transition-colors duration-300 hover:bg-accent-dark ml-2.5"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/15 text-accent border border-accent/40 hover:bg-accent/25 text-sm transition-all no-underline"
             >
-              <CgWebsite className="inline-block" />
+              <CgWebsite />
               Visualizar
             </a>
           )}
