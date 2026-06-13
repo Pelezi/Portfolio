@@ -1,28 +1,80 @@
 [
   {
-    "dateRange": "Jan 2024 – Presente",
-    "role": "Desenvolvedor Full Stack",
-    "company": "Pelezi",
-    "location": "Brasil · Remoto",
-    "description": "Desenvolvimento de sistemas e aplicações web para clientes internos e externos.",
+    "dateRange": "Fev 2026 - Presente",
+    "role": "Engenheiro de Agentes de IA e desenvolvedor web full-stack",
+    "company": "Aramis",
+    "location": "São Paulo, SP · Remoto",
+    "description": "Desenvolvimento e operação de agentes de inteligência artificial para automação de processos empresariais, em regime de terceirização.",
     "highlights": [
-      "Criação do sistema Talentos para gestão financeira integrada com WhatsApp",
-      "Desenvolvimento do Portal Uvas para gerenciamento de membros",
-      "Implementação de bots de comunicação via WhatsApp"
+      "Construção de pipelines de dados e agentes de IA com Azure Databricks",
+      "Integração e versionamento de soluções via Azure DevOps",
+      "Automação de fluxos de negócio com LLMs e ferramentas de orquestração"
     ],
-    "technologies": ["TypeScript", "React", "Node.js", "PostgreSQL", "WhatsApp API"]
+    "technologies": ["Azure Databricks", "Azure DevOps", "Python", "LLM", "React", "Node.js"]
   },
   {
-    "dateRange": "...",
-    "role": "Cargo · Empresa",
-    "company": "Empresa",
-    "location": "Cidade, Estado · Presencial / Remoto / Híbrido",
-    "description": "Descrição das suas responsabilidades e atividades nesta posição.",
+    "dateRange": "Nov 2023 - Presente",
+    "role": "Desenvolvedor de Software",
+    "company": "COMEIA",
+    "location": "Caruaru, PE · Remoto",
+    "description": "Atuação como desenvolvedor PJ em uma fábrica de software, participando de projetos para diferentes clientes nas áreas de automação, BI e desenvolvimento full-stack.",
     "highlights": [
-      "Conquista ou responsabilidade principal 1",
-      "Conquista ou responsabilidade principal 2",
-      "Conquista ou responsabilidade principal 3"
+      "Alocação em clientes como Luck Receptivo, Niara Tecnologia e Cardeal Distribuidora",
+      "Desenvolvimento de sistemas web e automações para clientes externos",
+      "Colaboração em equipes multidisciplinares com entregas ágeis"
     ],
-    "technologies": ["Tecnologia 1", "Tecnologia 2", "Tecnologia 3"]
+    "technologies": ["TypeScript", "React", "Node.js", "Python", "PostgreSQL"]
+  },
+  {
+    "dateRange": "Ago 2024 - Presente",
+    "role": "Técnico em Automação e Desenvolvedor Full-Stack",
+    "company": "Luck Receptivo",
+    "location": "Natal, RN · Remoto",
+    "description": "Desenvolvimento de automações e sistemas full-stack para operações de receptivo turístico, em regime de terceirização pela COMEIA.",
+    "highlights": [
+      "Criação de dashboards interativos com Python e Streamlit",
+      "Automação de processos operacionais, reduzindo retrabalho manual",
+      "Desenvolvimento de integrações entre sistemas e APIs externas"
+    ],
+    "technologies": ["Python", "Streamlit", "FastAPI", "PostgreSQL", "Docker", "REST APIs", "TypeScript", "React", "Node.js"]
+  },
+  {
+    "dateRange": "Nov 2023 - Set 2024",
+    "role": "Analista de BI",
+    "company": "Cardeal Distribuidora",
+    "location": "Caruaru, PE · Remoto",
+    "description": "Análise e modelagem de dados para suporte à tomada de decisão, em regime de terceirização pela COMEIA.",
+    "highlights": [
+      "Modelagem dimensional de dados para relatórios gerenciais",
+      "Criação de métricas e KPIs utilizando MAQL",
+      "Desenvolvimento de painéis de BI para acompanhamento de performance"
+    ],
+    "technologies": ["Modelagem de Dados", "MAQL", "GoodData", "SQL"]
+  },
+  {
+    "dateRange": "Abr 2024 - Ago 2024",
+    "role": "Controle de Qualidade",
+    "company": "Niara Tecnologia",
+    "location": "São Paulo, SP · Remoto",
+    "description": "Atuação em controle de qualidade de software, em regime de terceirização pela COMEIA.",
+    "highlights": [
+      "Execução de testes funcionais e de regressão em sistemas web",
+      "Identificação e documentação de bugs e inconsistências",
+      "Colaboração com times de desenvolvimento para resolução de defeitos"
+    ],
+    "technologies": ["QA", "Testes Funcionais", "Testes de Regressão"]
+  },
+  {
+    "dateRange": "Mar 2023 - Nov 2023",
+    "role": "Editor de Vídeo",
+    "company": "Creation Educação",
+    "location": "Caruaru, PE · Remoto",
+    "description": "Edição e produção de conteúdo audiovisual para plataformas educacionais.",
+    "highlights": [
+      "Edição de aulas e conteúdos educativos com Adobe Premiere Pro",
+      "Criação de animações e motion graphics com Adobe After Effects",
+      "Entrega de conteúdo otimizado para plataformas de ensino a distância"
+    ],
+    "technologies": ["Adobe Premiere Pro", "Adobe After Effects", "DaVinci Resolve"]
   }
 ]
