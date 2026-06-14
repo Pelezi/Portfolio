@@ -2,8 +2,9 @@ import React from "react";
 import Github from "./Github";
 import Techstack from "./Techstack";
 import Aboutcard from "./AboutCard";
-import avatarImg from "../../Assets/avatar.svg";
 import Toolstack from "./Toolstack";
+
+const avatarImg = "/assets/avatar.svg";
 
 const About: React.FC = () => {
   return (

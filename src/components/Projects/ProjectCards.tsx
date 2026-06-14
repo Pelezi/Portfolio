@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useEffect } from "react";
 import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";

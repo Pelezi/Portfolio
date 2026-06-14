@@ -1,16 +1,11 @@
 import React from "react";
-import chrome from "../../Assets/TechIcons/Google Chrome.svg";
-import vsCode from "../../Assets/TechIcons/vscode.svg";
-import intelliJ from "../../Assets/TechIcons/intellij-idea.svg";
-import docker from "../../Assets/TechIcons/Docker.svg";
-import postman from "../../Assets/TechIcons/Postman.svg";
 
 const tools = [
-  { label: "Google Chrome", icon: <img src={chrome} className="h-4 w-4" alt="" /> },
-  { label: "VS Code",        icon: <img src={vsCode} className="h-4 w-4" alt="" /> },
-  { label: "IntelliJ IDEA",  icon: <img src={intelliJ} className="h-4 w-4" alt="" /> },
-  { label: "Docker",         icon: <img src={docker} className="h-4 w-4" alt="" /> },
-  { label: "Postman",        icon: <img src={postman} className="h-4 w-4" alt="" /> },
+  { label: "Google Chrome", icon: <img src="/assets/TechIcons/Google Chrome.svg" className="h-4 w-4" alt="" /> },
+  { label: "VS Code",        icon: <img src="/assets/TechIcons/vscode.svg" className="h-4 w-4" alt="" /> },
+  { label: "IntelliJ IDEA",  icon: <img src="/assets/TechIcons/intellij-idea.svg" className="h-4 w-4" alt="" /> },
+  { label: "Docker",         icon: <img src="/assets/TechIcons/Docker.svg" className="h-4 w-4" alt="" /> },
+  { label: "Postman",        icon: <img src="/assets/TechIcons/Postman.svg" className="h-4 w-4" alt="" /> },
 ];
 
 const Toolstack: React.FC = () => {

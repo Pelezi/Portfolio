@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import GitHubCalendar from "react-github-calendar";
 
@@ -16,12 +18,9 @@ const Github: React.FC = () => {
         blockMargin={10}
         blockRadius={10}
         fontSize={20}
+        colorScheme="dark"
         theme={{
-          level0: "#1e1b4b",
-          level1: "#3730a3",
-          level2: "#4338ca",
-          level3: "#4f46e5",
-          level4: "#6366f1",
+          dark: ["#1e1b4b", "#3730a3", "#4338ca", "#4f46e5", "#6366f1"],
         }}
       />
     </div>

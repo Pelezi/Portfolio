@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
-import myImg from "../../Assets/avatar.svg";
 import Tilt from "react-parallax-tilt";
+
+const myImg = "/assets/avatar.svg";
 
 const Home2: React.FC = () => {
   return (

@@ -1,12 +1,13 @@
 import React from "react";
 import ProjectCard from "./ProjectCards";
-import leaf from "../../Assets/Projects/leaf.png";
-import editor from "../../Assets/Projects/codeEditor.png";
-import chatify from "../../Assets/Projects/chatify.png";
-import bitsOfCode from "../../Assets/Projects/blog.png";
 import projectsData from "../../data/projects.json";
 
-const imageMap: Record<string, string> = { leaf, editor, chatify, bitsOfCode };
+const imageMap: Record<string, string> = {
+  leaf: "/assets/Projects/leaf.png",
+  editor: "/assets/Projects/codeEditor.png",
+  chatify: "/assets/Projects/chatify.png",
+  bitsOfCode: "/assets/Projects/blog.png",
+};
 
 const projects = projectsData.map((p) => ({ ...p, imgPath: imageMap[p.imgKey] }));
 

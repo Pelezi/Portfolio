@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useCallback, useEffect, useRef } from "react";
-import { ReactComponent as PeleziLogo } from "../../Assets/Pelezi.svg";
-import { Link } from "react-router-dom";
+import PeleziLogo from "@/components/PeleziLogo";
+import Link from "next/link";
 import Home2 from "./Home2";
 import Type from "./Type";
 import {
@@ -36,7 +38,7 @@ const Home: React.FC = () => {
         label.style.opacity = "1";
         label.style.transform = "translateY(0)";
       } else {
-        label.textContent = " ";
+        label.textContent = " ";
         label.style.opacity = "0";
         label.style.transform = "translateY(4px)";
       }
@@ -229,13 +231,13 @@ const Home: React.FC = () => {
 
               <div className="mt-6 flex flex-wrap gap-3 fade-up" style={{ animationDelay: "400ms" }}>
                 <Link
-                  to="/project"
+                  href="/project"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-white text-sm font-medium shadow-[0_10px_30px_-10px_rgba(99,102,241,0.7)] hover:shadow-[0_15px_40px_-10px_rgba(99,102,241,0.9)] transition-all hover:-translate-y-0.5 no-underline"
                 >
                   Ver Projetos <BsArrowRight />
                 </Link>
                 <Link
-                  to="/about"
+                  href="/about"
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 bg-white/5 text-white text-sm hover:bg-white/10 transition-all no-underline"
                 >
                   Sobre mim

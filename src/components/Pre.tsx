@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as PeleziLogo } from "../Assets/Pelezi.svg";
+import PeleziLogo from "@/components/PeleziLogo";
 
 interface PreProps {
   load: boolean;
